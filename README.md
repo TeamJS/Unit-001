@@ -147,7 +147,7 @@ You do not need to use any metaprogramming or make the class super abstract. You
 
 ## Student Scraper
 
-Once your classes are well defined with obvious functionality, such as having a name and being able to save a row to the database, your next goal is to create a scrapper class that can handle populating the database. Something like:
+Once your classes are well defined with obvious functionality, such as having a name and being able to save a row to the database, your next goal is to create a scraper class that can handle populating the database. Something like:
 
 ```ruby
 scraper = StudentSiteScraper.new
