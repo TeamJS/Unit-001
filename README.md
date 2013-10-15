@@ -93,8 +93,6 @@ Integrate the rspec-guard gem and a Guardfile so that you can autotest your proj
 
 Integrate SimpleCov and get 100% code coverage.
 
-## Bonus Challenges
-
 # Playlister-RB
 
 Feel free to use:
