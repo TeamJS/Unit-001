@@ -1,9 +1,6 @@
-# Learning Objectives
-
-- git workflow
-- Understand require vs require_relative, loading multiple project files.
-
 # General Guidelines
+
+Read this entire document before starting. This project focuses on working deliverables and not code structure (though lots of good patterned code structure is covered).
 
 ## Deliverables
 
@@ -32,6 +29,7 @@ lib/
  views/
  models/ 
 spec/
+_site/
 README.md
 ```
 
@@ -93,6 +91,10 @@ Integrate the rspec-guard gem and a Guardfile so that you can autotest your proj
 
 Integrate SimpleCov and get 100% code coverage.
 
+### F. _site
+
+When generating static sites, your html output should go here.
+
 # Playlister-RB
 
 Feel free to use:
@@ -127,9 +129,70 @@ Your CLI script should live in the bin directory
 
 ## Site Generator
 
+Define a `SiteGenerator` class that is called via `bin/generate.rb`.
+This class should generate a static, interlinked site, that represents the data in the `playlister-rb/data` directory.
+
+It should generate a website with the following structure within the `_site` directory.
+
+An index page that links to the two sections of the sites, artists and genres
+
+```
+_site/index.html
+    links to artists.html
+    links to genres.html
+```
+
+Templates should be generated via ERB files located in `lib/views`.
+
+`_site/artists.html`
+
+The artist index must list all the artists. This list must be sorted alphabetically.
+
+In addition to the Artists name, the artists total song count should be displayed.
+
+The artist name should link to the artists individual page within `_site/artists`.
+
+This page should also say how many Artists there are in total.
+
+`artists/<artist>.html`
+
+The script must generate an artist page for each individual artist that was created during import. An artists page should list the name of the artist along with their songs and genres. The songs and genres must link to the individual song and genre page.
+
+```
+  M83 - 8 Songs
+    1. Midnight City - Folk
+    2. Kim & Jesse - Pop
+```
+
+`genres.html`
+
+The genre index must list all the genres. This list must be sorted by the amount of songs. In addition to the Genres name, the total song and artist count should be listed along side it.
+
+The genre name should link to the genres individual page within `_site/genres`.
+
+```
+  Folk: 8 Songs, 3 Artists
+```
+
+`genres/<genre>.html`
+
+The script must generate a genre page for each individual genre that was created during import. A genres page should list the name of the songs, linking to the individual song and artists. Also include the total unique artists and song counts in the genre.
+
+```
+Folk
+  M83 - Midnight City
+  Lady Gaga - Pokerface
+```
+
+`songs/<song>.html`
+
+The song page should list all the available information on the song, it's artist and genre with the appropriate links.
+
 # Flatiron Students
 
-Feel free to use: https://github.com/flatiron-school/003-School-Domain as a reference.
+Feel free to use as a reference: 
+https://github.com/flatiron-school/003-School-Domain 
+https://github.com/spencer1248/semi-oo-student-scraper
 
 ## Domain Model
 
@@ -169,5 +232,16 @@ Your scrape should be designed in an OO manner. Additionally, if you felt the ne
 
 ## CLI
 
+You should be a `CLI` class that can be initialized and called within `cli.rb` to create a Command Line version of the student site.
+
+It should account for the common functionality we've been using in our programs, browse, show, exit, help. The show function, of showing a student, should output their complete profile. If you want, feel free to build other functionality, search for a student, open a student in a browser, etc.
+
+Your goal is to expose the domain of the Student class to an end-user via the command line.
+
 ## Site Generator
 
+The goal here is to generate a static version of the student site as it basically appears. You're done when there is as little difference between the student site in your `_site` directory and http://students.flatironschool.com.
+
+You'll need an `index.erb` and a `show.erb` to do this, where `index.erb` will generate the student index and `show.erb` will generate each individual's profile. You should end up with 42 HTML files in `_site`, one index.html, and 41 or so student profiles.
+
+This should be OO. So, you should have a `SiteGenerator` class that you fire up via `bin/generate.rb` that collaborates with the `Student` class and some ERB views to generate the site.
