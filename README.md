@@ -29,6 +29,8 @@ bin/
 config/
 db/
 lib/
+ views/
+ models/ 
 spec/
 README.md
 ```
@@ -63,13 +65,17 @@ You must build an environment.rb file that will load all the dependencies of you
 
 Figure out how to account for different environments. You'll probably notice that when you run your test suite, if it's dropping and adding the database, you might be losing meaningful data, forcing you to re-run the scrape or data collection mechanism. Your classes, could in theory (and in practice), account for different database files for different environments, keeping your tests always using a different, disposable, database.
 
+A Gemfile and bundler into your environment.rb that handles gem load dependencies. The result of which is that by correctly loading bundler, you will not need to `require 'anygems'` in your environment.rb besides bundler.
+
 ### C. a db directory
 
 All databases should be located in db.
 
-### D. a lib directory for your models.
+### D. a lib directory for your code.
 
-All your classes must be located in lib. They should cover the bulk of the logic for the domain (project). They may not include requires or require relatives. Each file should be named according to model naming conventions, singular classes and corresponding file names, dog.rb defines a class Dog.
+All your classes must be located in lib/models. They should cover the bulk of the logic for the domain (project). They may not include requires or require relatives. Each file should be named according to model naming conventions, singular classes and corresponding file names, dog.rb defines a class Dog.
+
+Any ERB templates should live in lib/views.
 
 ### E. spec directory. 
 
@@ -81,21 +87,19 @@ You can easily add RSpec to a project using:
 rspec --init
 ```
 
+#### Bonus
+
+Integrate the rspec-guard gem and a Guardfile so that you can autotest your project. That means on each file change, Guard will run your test suite.
+
+Integrate SimpleCov and get 100% code coverage.
+
 ## Bonus Challenges
 
-Integrate:
-
-A. the rspec-guard gem and a Guardfile so that you can autotest your project. That means on each file change, Guard will run your test suite.
-
-B. A Gemfile and bundler into your environment.rb that handles gem load dependencies. The result of which is that by correctly loading bundler, you will not need to `require 'anygems'` in your environment.rb besides bundler.
-
-C. Integrate SimpleCov and get 100% code coverage.
-
-1. Playlister-RB CLI + Site Generator
-
-2. Flatiron Students CLI + Site Generator
-
 # Playlister-RB
+
+Feel free to use:
+http://github.com/flatiron-school/playlister-rb
+http://github.com/aviflombaum/playlister-rb
 
 ## Domain Model
 
@@ -124,9 +128,25 @@ Your CLI script should live in the bin directory
 
 # Flatiron Students
 
+Feel free to use: https://github.com/flatiron-school/003-School-Domain as a reference.
+
 ## Domain Model
 
+The student class you need to build should pass the spec that are located in `flatiron-students/with-db/student_spec.rb`.
+
+The idea is to build an easily modifiable and extensible Object-Relationship-Mapper that will let you access a student and their properties from a database. The model should be responsible for all database interactions, including creating the correct schema for any tables required, resetting the database, inserting students, querying students, etc.
+
+Additionally, there will probably be a requirement for some methods that help the Student class interact with interfaces, for instance, an instance method `#url` that will generate a perdictable and consistent URL for a student, `avi_flombaum.url #=> 'avi-flombaum.html'` maybe.
+
+Make the student class responsible for everything a student has to do in the two sections below.
+
+Feel free to edit the test suite as needed. You should write and use the tests you think you need in order to flex the functionality of the model and ensure it works and behaves as expected.
+
+You do not need to use any metaprogramming or make the class super abstract. You can hard code things (for instance, if you want a `::find_by_` method for every column, you don't need to use dynamic definition, you could just hardcode 10-12 methods.)
+
 ## Site Scraper
+
+Once your classes are well defined with obvious functionality, 
 
 ## CLI
 
