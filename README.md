@@ -196,7 +196,7 @@ https://github.com/spencer1248/semi-oo-student-scraper
 
 ## Domain Model
 
-The student class you need to build should pass the spec that are located in `flatiron-students/with-db/student_spec.rb`.
+The student class you need to build should pass the spec that are located in `flatiron-students/spec/student_spec.rb`.
 
 The idea is to build an easily modifiable and extensible Object-Relationship-Mapper that will let you access a student and their properties from a database. The model should be responsible for all database interactions, including creating the correct schema for any tables required, resetting the database, inserting students, querying students, etc.
 
