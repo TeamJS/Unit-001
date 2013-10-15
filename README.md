@@ -125,7 +125,7 @@ I imagine that most of your programs, the site generator and the CLI will have t
 
 ## CLI
 
-Your CLI script should live in the bin directory 
+Build a `CLI` class that is run via `bin/cli.rb` that will load a command line program for end users to browse this music library.
 
 ## Site Generator
 
