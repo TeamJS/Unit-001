@@ -117,7 +117,9 @@ parser.call
 
 After that, if I was to call `Artist.all.first` I would see the instance representing the Artist Action Bronson. Furthermore, `Artist.all.first.songs` should include the Song instance representing Larry Csonka. Calling `genre` on that instance should return the genre indie. Additionally, calling `songs` on that indie genre should return even more songs, etc.
 
-It's okay if your LibraryParser class collaborates with Artist, Song, and Genre to create data. Step through the data and use the API (interface) defined by Song, Genre, and Artist to appropriately create the correct amount of data. Feel free to add methods that you feel you need (maybe Artist.find or overwriting a == for better object equality). Your LibraryParser class should live in the lib directory as well and loaded by your environment. 
+It's okay if your LibraryParser class collaborates with Artist, Song, and Genre to create data. Step through the data and use the API (interface) defined by Song, Genre, and Artist to appropriately create the correct amount of data. Feel free to add methods that you feel you need (maybe Artist.find or overwriting a == for better object equality). Your LibraryParser class should live in the lib directory as well and required by your environment. 
+
+I imagine that most of your programs, the site generator and the CLI will have to initialize a `LibraryParser` before running so that the program has data.
 
 ## CLI
 
@@ -143,14 +145,29 @@ Feel free to edit the test suite as needed. You should write and use the tests y
 
 You do not need to use any metaprogramming or make the class super abstract. You can hard code things (for instance, if you want a `::find_by_` method for every column, you don't need to use dynamic definition, you could just hardcode 10-12 methods.)
 
-## Site Scraper
+## Student Scraper
 
-Once your classes are well defined with obvious functionality, 
+Once your classes are well defined with obvious functionality, such as having a name and being able to save a row to the database, your next goal is to create a scrapper class that can handle populating the database. Something like:
+
+```ruby
+scraper = StudentSiteScraper.new
+scraper.call
+```
+
+That will use Nokogiri to parse the HTML of http://students.flatironschool.com and create local data using the Student class you built above. The class can collaborate as much as it needs with the other objects in the domain.
+
+In terms of running the scrape for the CLI and Site Generator, I would imagine you would want to build some sort of functionality that can determine whether running the scrape is even required. For instance, maybe in your `cli.rb`, you might have code like:
+
+```ruby
+if Student.empty? # where Student.empty? checks the DB or something
+  scraper = StudentSiteScraper.new
+  scraper.call
+end
+```
+
+Your scrape should be designed in an OO manner. Additionally, if you felt the need to define another class, maybe that represents an individual student's scrape logic `StudentScraper`, that gets initialized once for each student in the `StudentSiteScraper`, that might be nice. I would imagine then that `StudentSiteScraper` would mostly be responsible for finding the students to scrape and then delegating the scraping of each individual student profile url to `StudentScraper` and then instantiating and saving `Student` instances. So methods like `scrape_name` would be in `StudentScraper`. But design whatever is easiest to you.
 
 ## CLI
 
 ## Site Generator
 
-*Bonus* Integrate Classes / Modules
-*Bonus* Abstract The CLI and Site Generator
-Simplecov
