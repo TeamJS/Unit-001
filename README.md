@@ -2,11 +2,15 @@
 
 - git workflow
 - Understand require vs require_relative, loading multiple project files.
-- 
 
 # General Guidelines
 
 ## Deliverables
+
+- Per team, one repackaged version of the playerlister app in a new repository called
+  "playlister-rb-unit-1"
+- Per team, one repackaged version of the students app in a new repository called
+  "flatiron-students-unit-1"
 
 ## Source Files
 
