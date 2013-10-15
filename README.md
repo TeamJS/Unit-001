@@ -22,7 +22,7 @@ Because I want you to work on packaging projects and going from start to finish,
 
 ## Project Structure
 
-Every team must submit a repository with the following folder structure.
+Every team must submit repositories with the following folder structure.
 
 ```
 bin/
