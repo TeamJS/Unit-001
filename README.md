@@ -96,8 +96,9 @@ Integrate SimpleCov and get 100% code coverage.
 # Playlister-RB
 
 Feel free to use:
-http://github.com/flatiron-school/playlister-rb
-http://github.com/aviflombaum/playlister-rb
+
+- http://github.com/flatiron-school/playlister-rb
+- http://github.com/aviflombaum/playlister-rb
 
 ## Domain Model
 
