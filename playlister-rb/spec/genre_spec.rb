@@ -1,3 +1,5 @@
+require_relative './spec_helper'
+
 describe "Genre" do
 
   it "can initialize a genre" do

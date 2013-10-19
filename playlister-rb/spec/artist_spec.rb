@@ -1,3 +1,5 @@
+require_relative './spec_helper'
+
 describe "Artist" do
 
   it "can be initialized" do
