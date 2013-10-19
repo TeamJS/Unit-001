@@ -6,14 +6,14 @@ class Artist
   @ARTISTS = []
 
   def initialize
-    self.class.all << self  
+    self.class.all << self
+    @songs = []
+    @genres = []
     #this is b/c u can't call @ARTISTS in instance methods
   end
 
   def add_song(song)
-    @songs ||= []
     @songs << song
-    @genres ||= []
     @genres << song.genre
   end
 
