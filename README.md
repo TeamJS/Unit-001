@@ -1,5 +1,5 @@
 # General Guidelines
-
+#ignore this
 Read this entire document before starting. This project focuses on working deliverables and not code structure (though lots of good patterned code structure is covered).
 
 ## Deliverables
